@@ -4,7 +4,7 @@ import java.math.BigInteger;
 import java.net.*; 
 
 public class TCPserverThread extends Thread {
-	//testing 
+	//testing dominick is makeing a change
 	private Socket clientSocket = null; 
 	
 	public TCPserverThread(Socket socket) {
