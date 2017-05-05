@@ -46,6 +46,7 @@ public class TCPserver {
 		{
 			result = BigInteger.ZERO;
 		}
+
 		if(n.equals(BigInteger.ONE))
 		{
 			result = BigInteger.ONE;
@@ -55,6 +56,7 @@ public class TCPserver {
 			n1 = BigInteger.ONE;
 			n2 = BigInteger.ZERO;
 			for (BigInteger i = BigInteger.ONE; i.compareTo(n) < 0 ; i = i.add(BigInteger.ONE))
+
 			{
 				result = n1.add(n2);
 				n2 = n1;
@@ -64,33 +66,23 @@ public class TCPserver {
 		return result;
 	}
 	
-	public static String nextEvenFib(BigInteger n)
-	{
-		String msg = "";
+	  public static BigInteger nextEvenFib(BigInteger n)
+	  {
+		BigInteger evenFib = BigInteger.ZERO;
 		BigInteger temp = BigInteger.ONE;
-		BigInteger evens[]= new BigInteger[5];
 		int i = 0;
-		for(int ii = 0; ii < 5; ii++)
-		{
-			while(temp.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ZERO)!=0)
-			{
-				temp = fibonacci(n.add(BigInteger.valueOf(i)));
-				i++;	
-			}
-			evens[ii] = temp;
-			temp = temp.add(BigInteger.ONE);
-			i++;	
-		}
-		msg = "The Next Five Even Fibonacci Values are: ";
-		for (int iii = 0; iii < 5; iii++)
-		{
-			msg = msg + "   " + evens[iii];	
-		}
-		return msg;
-		
-	}
+		while(temp.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ZERO)!=0)
+		  {
+			  temp = fibonacci(n.add(BigInteger.valueOf(i)));
+			  i++;
+		  }
+		  evenFib = temp;
+		  temp = temp.add(BigInteger.ONE);
+		  i++;
+		return evenFib;
+	  }
 		  
-	//Steph
+	//Steph 
 	public static int nextPrime(int prime)
 	{
 		boolean isPrime = false;
