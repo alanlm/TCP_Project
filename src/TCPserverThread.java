@@ -31,9 +31,9 @@ public class TCPserverThread extends Thread {
                 case "fibonacci": 
                 case "nextevenfib":
                 case "nextEvenFib": // TODO: nextEvenFib
-                	
-                	response = TCPserver.nextEvenFib(TCPserver.fibValue); 
-
+                	BigInteger nextFibValue = TCPserver.nextEvenFib(TCPserver.fibValue); 
+                	TCPserver.fibValue = nextFibValue; 
+                	response = String.valueOf(nextFibValue); 
                 	break;
                 case "rand":
                 case "largerRand":
