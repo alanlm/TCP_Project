@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class TCPserver {
 	
-	public static BigInteger fibValue; 
+	public static BigInteger fibValue = BigInteger.ZERO; 
 	public static int primeValue = 2; 
-	public static int randValue; 
+	public static int randValue = 0; 
 
 	public static void main(String[] args) 
 	{
