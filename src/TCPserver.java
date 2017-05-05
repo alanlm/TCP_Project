@@ -60,30 +60,22 @@ public class TCPserver {
 			return result;
 		}
 
-		  public static String nextEvenFib(BigInteger n)
+		  public static BigInteger nextEvenFib(BigInteger n)
 		  {
-			  String msg = "";
-			  BigInteger temp = BigInteger.ONE;
-			  BigInteger evens[]= new BigInteger[5];
-			  int i = 0;
-			  for(int ii = 0; ii < 5; ii++)
+			BigInteger evenFib = BigInteger.ZERO;
+			BigInteger temp = BigInteger.ONE;
+			int i = 0;
+			while(temp.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ZERO)!=0)
 			  {
-				  while(temp.mod(BigInteger.valueOf(2)).compareTo(BigInteger.ZERO)!=0)
-				  {
-					  temp = fibonacci(n.add(BigInteger.valueOf(i)));
-					  i++;
-				  }
-				  evens[ii] = temp;
-				  temp = temp.add(BigInteger.ONE);
+				  temp = fibonacci(n.add(BigInteger.valueOf(i)));
 				  i++;
-			  }  
-			  msg = "The Next Five Even Fibonacci Values are: ";
-			  for (int iii = 0; iii < 5; iii++)	
-			  {
-				  msg = msg + "   " + evens[iii];
 			  }
-			  return msg;
+			  evenFib = temp;
+			  temp = temp.add(BigInteger.ONE);
+			  i++;
+			return evenFib;
 		  }
+		  
 		//Steph
 			public static int nextPrime(int prime)
 			{
