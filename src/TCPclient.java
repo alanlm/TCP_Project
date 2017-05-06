@@ -4,8 +4,8 @@ import java.math.BigInteger;
 import java.net.*; 
 
 public class TCPclient {
-	public static BigInteger odd = BigInteger.ONE;
-	public static BigInteger even = BigInteger.valueOf(2);
+	private BigInteger odd = BigInteger.ONE;
+	private BigInteger even = BigInteger.valueOf(2);
 	
 	public BigInteger getEven(){
 		return even;
