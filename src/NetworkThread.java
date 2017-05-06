@@ -5,8 +5,9 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.concurrent.Callable;
 
-public class NetworkThread extends Thread {
+public class NetworkThread implements Callable<String> {
 	
 	private String request = ""; 
 	
@@ -14,7 +15,8 @@ public class NetworkThread extends Thread {
 		request = r; 
 	} // end of constructor
 	
-	public void run() {
+	@Override
+	public String call() throws Exception {
 		String host = "192.168.1.10"; 
 		int port = 2500; 
 		
@@ -42,7 +44,7 @@ public class NetworkThread extends Thread {
 			System.out.println("Server's Response: " + response + "\n");
 			
 			// TODO give response from server to return queue 
-			
+			return response; 
 		} catch(UnknownHostException e) {
 			e.printStackTrace();
 			System.err.println("Don't know about host " + host); 
@@ -50,7 +52,10 @@ public class NetworkThread extends Thread {
 		} catch(IOException e) {
 			e.printStackTrace();
 			System.err.println("Couldn't get I/O for the connection to " + host);
-		} // end of catch(IOException)
-	} // end of run method 
+		} finally {
+			serverSocket.close();
+		} // end of try catch finally block 
+		return "ERROR! Could not get a response from server"; 
+	} // end of call method 
 
 } // end of class 
