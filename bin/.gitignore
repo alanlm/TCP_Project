@@ -2,3 +2,5 @@
 /TCPclient.class
 /TCPserver.class
 /TCPserverThread.class
+/uThr.class
+/RuntimeThr.class
