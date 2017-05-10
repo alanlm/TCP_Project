@@ -27,32 +27,21 @@ public class TCPserverThread extends Thread {
                 System.out.println("Processing client's request . . .");
                 String response = ""; 
                 switch(request) {
-                case "fib":
-                case "fibonacci": 
-                case "nextevenfib":
-                case "nextEvenFib": // TODO: nextEvenFib
+                case "nextFib": // TODO: nextEvenFib
                 	BigInteger nextFibValue = TCPserver.nextEvenFib(TCPserver.fibValue); 
                 	TCPserver.fibValue = nextFibValue; 
                 	response = String.valueOf(nextFibValue); 
                 	break;
-                case "rand":
-                case "largerRand":
-                case "largerrand":
-                case "nextlargerrand":
-                case "nextLargerRand": // TODO: nextLargerRand
+                case "nextRand": // TODO: nextLargerRand
                 	int nextRandValue = TCPserver.nextLargerRand(TCPserver.randValue); 
                 	TCPserver.randValue = nextRandValue; 
                 	response = String.valueOf(nextRandValue); 
                 	break; 
-                case "prime":
-                case "nextprime":
                 case "nextPrime": // TODO: nextPrime
                 	int nextPrimeValue = TCPserver.nextPrime(TCPserver.primeValue); 
                 	TCPserver.primeValue = nextPrimeValue; 
                 	response = String.valueOf(nextPrimeValue); 
                 	break; 
-                default: // unknown request 
-                	response = "ERROR: Unknown Request! Cannot Process . . ."; 
                 }
                 
                 // send server's response 

@@ -29,7 +29,6 @@ public class RuntimeThr implements Callable <String>
 			NetworkThread t1;
 			LocalThread t2;
 			
-			
 			 new NetworkThread(requestQue.poll());
 			
 			switch(newRequest)

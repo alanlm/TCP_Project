@@ -5,25 +5,21 @@ import java.util.concurrent.Callable;
 public class LocalThread implements Callable<String>{
 
 	private String request = ""; 
-	private TCPclient mClient;
+	private BigInteger value;
 	
-	public LocalThread(String r, TCPclient client) {
+	public LocalThread(String r, BigInteger v) {
 		request = r; 
-		mClient = client;
+		value = v;
 	}
 	
 	public String call() throws Exception {
 		switch(request){
-		case "nextOdd":
-			BigInteger nextOddValue = nextOdd(mClient.getOdd());
-			mClient.setOdd(nextOddValue);
-			request = String.valueOf(nextOddValue); 
-			break;
-		case "nextEven":
-			BigInteger nextEvenValue = nextEven(mClient.getEven());
-			mClient.setEven(nextEvenValue);
-			request = String.valueOf(nextEvenValue); 
-			break;
+			case "nextOdd":
+				request = String.valueOf(nextOdd(value)); 
+				break;
+			case "nextEven":
+				request = String.valueOf(nextEven(value)); 
+				break;
 		}
 		return request;
 	}
