@@ -8,8 +8,8 @@ import java.util.concurrent.locks.ReentrantLock;
 public class RuntimeThr implements Callable <String>
 {
 	// Thread Safe Queues that store the client requests and the order of response 
-		private BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
-		private BlockingQueue<String> returnQue = new LinkedBlockingQueue<String>(); 
+		private static BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
+		private static BlockingQueue<String> returnQue = new LinkedBlockingQueue<String>(); 
 		private BigInteger newVal = BigInteger.ZERO;
 		private String newRequest = "";
 		private Lock  lock = new ReentrantLock();
