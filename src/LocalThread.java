@@ -16,12 +16,12 @@ public class LocalThread implements Callable<String>{
 		switch(request){
 			case "nextOdd":
 				BigInteger nextOddValue = nextOdd(value); 
-				TCPclient.currOdd = nextOddValue; 
+				TCPclient.curOdd = nextOddValue; 
 				request = String.valueOf(nextOddValue); 
 				break;
 			case "nextEven":
 				BigInteger nextEvenValue = nextEven(value); 
-				TCPclient.currEven = nextEvenValue; 
+				TCPclient.curEven = nextEvenValue; 
 				request = String.valueOf(nextEvenValue); 
 				break;
 		}

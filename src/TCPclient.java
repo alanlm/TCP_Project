@@ -10,7 +10,7 @@ public class TCPclient
 
 	private static BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
 	private static BlockingQueue<String> returnQue = new LinkedBlockingQueue<String>(); 
-	private static  BigInteger curEven, curOdd = BigInteger.ZERO;
+	public static  BigInteger curEven, curOdd = BigInteger.ZERO;
 	public static void main(String[] args)
 	{
 		System.out.println("Starting Client Requests...");
