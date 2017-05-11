@@ -1,5 +1,6 @@
-import java.math.BigInteger;
+//import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
+//import java.util.concurrent.locks.Condition;
 //import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -10,6 +11,7 @@ public class RuntimeThr implements Runnable
 		private static BlockingQueue<String> requestQue;// = new LinkedBlockingQueue<String>(); 
 		private static BlockingQueue<String> returnQue;// = new LinkedBlockingQueue<String>(); 
 		private Lock  lock = new ReentrantLock();
+		//private Condition requestLine = new Condition();
 		
 		public RuntimeThr(BlockingQueue<String> rqQue, BlockingQueue<String> rtQue)
 		{
@@ -23,9 +25,10 @@ public class RuntimeThr implements Runnable
 			String key = "";
 			NetworkThread t1;
 			LocalThread t2;
+			do
+			{
 			key = requestQue.peek();
 			System.out.println("RuntimeThr: key = " + key);
-			
 			switch(key)
 			{
 				case "nextFib": System.out.println("RuntimeThr: nextFib case");
@@ -96,7 +99,7 @@ public class RuntimeThr implements Runnable
 				break;
 				case "nextEven": System.out.println("RuntimeThr: nextEven case");
 				{
-					lock.lock(); 
+					//lock.lock(); 
 					try
 					{
 						key = requestQue.take();
@@ -140,5 +143,6 @@ public class RuntimeThr implements Runnable
 				break;
 			
 			}
+			}while(!requestQue.isEmpty());
 		}
 }
