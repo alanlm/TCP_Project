@@ -1,43 +1,89 @@
 import java.util.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
-public class uThr extends Thread{
-	//no idea if it was going to be its own class or not
-	private RuntimeThr queue = null;
-	
-	public uThr(RuntimeThr q) {
-		queue = q;
+public class uThr extends Thread
+{
+	private static BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
+	private static BlockingQueue<String> returnQue = new LinkedBlockingQueue<String>(); 
+	public uThr(BlockingQueue<String> rqQue, BlockingQueue<String> rtQue)
+	{
+		requestQue = rqQue;
+		returnQue = rtQue;
+		
 	}
 	
-	public void run() {
+	public void run()
+	{
+		String msg = "";
 		Random rand = new Random();
-		int result = rand.nextInt() % 5;
+		int result = 0;
 		
-		for (int i = 0; i < 20; i++) {
-			switch (result) {
+		for (int i = 0; i < 20; i++)
+		{
+			result = rand.nextInt() % 5;
+			switch (result) 
+			{
 				case 0:
-					//since the other threads are passing via string
-					//still wasn't told if returning automatically or 
-					//if it needed to grab the information manually
-					//or how I'm passing this information for that matter
-					//System.out.println(queue.Enqueue("nextEven"));
-					break;
+					try 
+					{
+						requestQue.put("nextEven");
+						msg = returnQue.take();
+						System.out.println(msg);
+					} catch (InterruptedException e) 
+					{
+						e.printStackTrace();
+					}
+				break;
 				case 1:
-					//System.out.println(queue.Enqueue("nextOdd"));
+					
+					try 
+					{
+						requestQue.put("nextOdd");
+						msg = returnQue.take();
+						System.out.println(msg);
+					} catch (InterruptedException e) 
+					{
+					e.printStackTrace();
+					}
 					break;
 				case 2:
-					//System.out.println(queue.Enqueue("nextEvenFib"));
+					try 
+					{
+						requestQue.put("nextFib");
+						msg = returnQue.take();
+						System.out.println(msg);
+					} catch (InterruptedException e) 
+					{
+					e.printStackTrace();
+					}
 					break;
 				case 3:
-					//System.out.println(queue.Enqueue("nextLargerRand"));
+					try 
+					{
+						requestQue.put("nextRand");
+						msg = returnQue.take();
+						System.out.println(msg);
+					} catch (InterruptedException e) 
+					{
+					e.printStackTrace();
+					}
 					break;
 				case 4:
-					//System.out.println(queue.Enqueue("nextPrime"));
+					try 
+					{
+						requestQue.put("nextPrime");
+						msg = returnQue.take();
+						System.out.println(msg);
+					} catch (InterruptedException e) 
+					{
+					e.printStackTrace();
+					}
 					break;
 				default:
+					// do nothing
 					break;
 			}
-			//change to actual function name once ready
-			//System.out.println(queue.Enqueue(rand.NextInt() % 5));
 		}
 	}
 }

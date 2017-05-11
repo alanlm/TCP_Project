@@ -1,11 +1,10 @@
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.Callable;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class RuntimeThr implements Callable <String>
+public class RuntimeThr implements Runnable 
 {
 	// Thread Safe Queues that store the client requests and the order of response 
 		private static BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
@@ -23,7 +22,7 @@ public class RuntimeThr implements Callable <String>
 			newVal = curVal;
 		}
 
-		public String call() throws Exception 
+		public  void run() 
 		{
 			String msg = "";
 			NetworkThread t1;
@@ -43,6 +42,9 @@ public class RuntimeThr implements Callable <String>
 					msg = (t1.call());
 					returnQue.put(msg);
 					newVal = newVal.add(BigInteger.ZERO);// this needs to be changed to account for updated value
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}finally{
 						lock.unlock();
 					}
@@ -59,6 +61,10 @@ public class RuntimeThr implements Callable <String>
 					msg = (t1.call());
 					returnQue.put(msg);
 					newVal = newVal.add(BigInteger.ZERO);// this needs to be changed to account for updated value
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					
 					} finally{
 						lock.unlock();
 					}
@@ -74,6 +80,9 @@ public class RuntimeThr implements Callable <String>
 					msg = (t1.call());
 					returnQue.put(msg);
 					newVal = newVal.add(BigInteger.ZERO);// this needs to be changed to account for updated value
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}finally{
 						lock.unlock();
 					}
@@ -89,6 +98,9 @@ public class RuntimeThr implements Callable <String>
 					msg = (t2.call());
 					returnQue.put(msg);
 					newVal = newVal.add(BigInteger.ZERO);// this needs to be changed to account for updated value
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
 				}finally{
 					lock.unlock();
 					}
@@ -104,6 +116,9 @@ public class RuntimeThr implements Callable <String>
 					msg = (t2.call());
 					returnQue.put(msg);
 					newVal = newVal.add(BigInteger.ZERO);// this needs to be changed to account for updated value
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
 					}finally{
 						lock.unlock();
 					}
@@ -111,7 +126,5 @@ public class RuntimeThr implements Callable <String>
 				break;
 			
 			}
-			
-			return returnQue.poll();
 		}
 }

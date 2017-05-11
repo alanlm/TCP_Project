@@ -1,8 +1,13 @@
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
+public class TCPclient 
+{
 
-public class TCPclient {
-	
-	public static void main(String[] args) {
+	private static BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
+	private static BlockingQueue<String> returnQue = new LinkedBlockingQueue<String>(); 
+	public static void main(String[] args)
+	{
 		
 	} // end of main 
 	
