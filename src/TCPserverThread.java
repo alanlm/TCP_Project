@@ -29,11 +29,11 @@ public class TCPserverThread extends Thread {
                 switch(request) {
                 case "nextFib": // TODO: nextEvenFib
                 	BigInteger nextFibValue = TCPserver.nextEvenFib(TCPserver.fibValue); 
-                	TCPserver.fibValue = nextFibValue; 
+                	TCPserver.fibValue = nextFibValue.add(BigInteger.ONE); 
                 	response = String.valueOf(nextFibValue); 
                 	break;
                 case "nextRand": // TODO: nextLargerRand
-                	BigInteger nextRandValue = TCPserver.nextLargerRand(TCPserver.randValue); 
+                	int nextRandValue = TCPserver.nextLargerRand(TCPserver.randValue); 
                 	TCPserver.randValue = nextRandValue; 
                 	response = String.valueOf(nextRandValue); 
                 	break; 
