@@ -119,7 +119,7 @@ public class TCPserver {
 	//Lori
 	public static int nextLargerRand(int s) 
 	{
-		if (s == Integer.MAX_VALUE )
+		if (s >= Integer.MAX_VALUE )
 		{
 			s = 1;
 		}

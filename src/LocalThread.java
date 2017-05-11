@@ -13,13 +13,13 @@ public class LocalThread implements Callable<String>{
 	public String call() throws Exception {
 		System.out.println("LocalThread: request = " + request);
 		switch(request){
-			case "nextOdd": System.out.println("LocalThread: nextOdd case");
+			case "nextOdd": 
 				BigInteger nextOddValue = nextOdd(TCPclient.curOdd); 
 				System.out.println("LocalThread: nextOdd case return value = " + nextOddValue);
 				TCPclient.curOdd = nextOddValue; 
 				request = String.valueOf(nextOddValue); 
 				break;
-			case "nextEven": System.out.println("LocalThread: nextEven case");
+			case "nextEven": 
 				BigInteger nextEvenValue = nextEven(TCPclient.curEven); 
 				System.out.println("LocalThread: nextEven case return value = " + nextEvenValue);
 				TCPclient.curEven = nextEvenValue; 

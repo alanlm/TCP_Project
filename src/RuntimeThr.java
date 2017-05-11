@@ -1,15 +1,11 @@
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class RuntimeThr implements Runnable 
 {
 	// Thread Safe Queues that store the client requests and the order of response 
 		private static BlockingQueue<String> requestQue;// = new LinkedBlockingQueue<String>(); 
 		private static BlockingQueue<String> returnQue;// = new LinkedBlockingQueue<String>(); 
-		private final Lock  lock = new ReentrantLock();
 		
 		public RuntimeThr(BlockingQueue<String> rqQue, BlockingQueue<String> rtQue)
 		{
