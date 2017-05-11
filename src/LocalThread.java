@@ -15,10 +15,14 @@ public class LocalThread implements Callable<String>{
 	public String call() throws Exception {
 		switch(request){
 			case "nextOdd":
-				request = String.valueOf(nextOdd(value)); 
+				BigInteger nextOddValue = nextOdd(value); 
+				TCPclient.currOdd = nextOddValue; 
+				request = String.valueOf(nextOddValue); 
 				break;
 			case "nextEven":
-				request = String.valueOf(nextEven(value)); 
+				BigInteger nextEvenValue = nextEven(value); 
+				TCPclient.currEven = nextEvenValue; 
+				request = String.valueOf(nextEvenValue); 
 				break;
 		}
 		return request;
