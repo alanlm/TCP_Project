@@ -17,7 +17,7 @@ public class NetworkThread implements Callable<String> {
 	
 	@Override
 	public String call() throws Exception {
-		String host = "192.168.1.10"; 
+		String host = "192.168.1.5"; 
 		int port = 2500; 
 		
 		Socket serverSocket = null; 
@@ -52,9 +52,7 @@ public class NetworkThread implements Callable<String> {
 		} catch(IOException e) {
 			e.printStackTrace();
 			System.err.println("Couldn't get I/O for the connection to " + host);
-		} finally {
-			serverSocket.close();
-		} // end of try catch finally block 
+		} 
 		return "ERROR! Could not get a response from server"; 
 	} // end of call method 
 

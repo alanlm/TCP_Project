@@ -21,7 +21,7 @@ public class uThr extends Thread
 		
 		for (int i = 0; i < 20; i++)
 		{
-			result = rand.nextInt() % 5;
+			result = rand.nextInt(5);
 			switch (result) 
 			{
 				case 0: System.out.println("uThr: request = nextEven");
@@ -29,7 +29,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextEven");
 						msg = returnQue.take();
-						System.out.println(msg);
+						System.out.println("uThr: return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 						e.printStackTrace();
@@ -41,7 +41,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextOdd");
 						msg = returnQue.take();
-						System.out.println(msg);
+						System.out.println("uThr: return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
@@ -52,7 +52,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextFib");
 						msg = returnQue.take();
-						System.out.println(msg);
+						System.out.println("uThr: return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
@@ -63,7 +63,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextRand");
 						msg = returnQue.take();
-						System.out.println(msg);
+						System.out.println("uThr: return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
@@ -74,7 +74,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextPrime");
 						msg = returnQue.take();
-						System.out.println(msg);
+						System.out.println("uThr: return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
