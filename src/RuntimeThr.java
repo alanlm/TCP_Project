@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -121,14 +122,18 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-			
+				default: 
+					try {
+					throw new IOException("Request Queue is empty");
+				} catch (IOException e) {
+					e.printStackTrace();
+				} 
 			}
 			System.out.println("=============================================="
 					+ "\nReturnQue: " + returnQue.toString()
 							+ "\n=============================================="); 
 			
-			if(requestQue.isEmpty())
-				System.out.println("RequestQue is empty . . .");
+			
 			if(returnQue.isEmpty()) {
 				System.out.println("All responses have been sent . . .");
 			}
