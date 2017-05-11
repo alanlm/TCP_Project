@@ -17,7 +17,7 @@ public class NetworkThread implements Callable<String> {
 	
 	@Override
 	public String call() throws Exception {
-		String host = "192.168.1.2";//"192.168.1.5"; 
+		String host = "192.168.1.3";//"192.168.1.5"; 
 		int port = 2500; 
 		
 		Socket serverSocket = null; 
