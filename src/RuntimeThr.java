@@ -1,7 +1,5 @@
-//import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.locks.Condition;
-//import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -11,7 +9,6 @@ public class RuntimeThr implements Runnable
 		private static BlockingQueue<String> requestQue;// = new LinkedBlockingQueue<String>(); 
 		private static BlockingQueue<String> returnQue;// = new LinkedBlockingQueue<String>(); 
 		private final Lock  lock = new ReentrantLock();
-		private Condition request = lock.newCondition();
 		
 		public RuntimeThr(BlockingQueue<String> rqQue, BlockingQueue<String> rtQue)
 		{
@@ -27,16 +24,17 @@ public class RuntimeThr implements Runnable
 			LocalThread t2;
 			do
 			{
+				System.out.println("=============================================="
+						+ "\nRequestQue: " + requestQue.toString()
+								+ "\n=============================================="); 
 			key = requestQue.peek();
 			System.out.println("RuntimeThr: key = " + key);
 			switch(key)
 			{
 				case "nextFib": System.out.println("RuntimeThr: nextFib case");
 				{
-					lock.lock(); 
 					try
 					{
-						request.await();
 						key = requestQue.take();
 						if (key == "nextFib")
 						{
@@ -44,23 +42,17 @@ public class RuntimeThr implements Runnable
 							msg = (t1.call());
 							System.out.println("RuntimeThr: nextFib return value is " + msg);
 							returnQue.put(msg);
-							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
 						e.printStackTrace();
-					}finally
-					{
-						lock.unlock();
 					}
 				}
 				break;
 				case "nextPrime": System.out.println("RuntimeThr: nextPrime case");
 				{
-					lock.lock(); 
 					try
 					{
-						request.await();
 						key = requestQue.take();
 						if (key == "nextPrime")
 						{
@@ -68,23 +60,17 @@ public class RuntimeThr implements Runnable
 							msg = (t1.call());
 							System.out.println("RuntimeThr: nextPrime return value is " + msg);
 							returnQue.put(msg);
-							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
 						e.printStackTrace();
-					}finally
-					{
-						lock.unlock();
 					}
 				}
 				break;
 				case "nextRand": System.out.println("RuntimeThr: nextRand case");
 				{
-					lock.lock(); 
 					try
 					{
-						request.await();
 						key = requestQue.take();
 						if (key == "nextRand")
 						{
@@ -92,23 +78,17 @@ public class RuntimeThr implements Runnable
 							msg = (t1.call());
 							System.out.println("RuntimeThr: nextRand return value is " + msg);
 							returnQue.put(msg);
-							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
 						e.printStackTrace();
-					}finally
-					{
-						lock.unlock();
 					}
 				}
 				break;
 				case "nextEven": System.out.println("RuntimeThr: nextEven case");
 				{
-					lock.lock(); 
 					try
 					{
-						request.await();
 						key = requestQue.take();
 						if (key == "nextEven")
 						{
@@ -116,23 +96,17 @@ public class RuntimeThr implements Runnable
 							msg = (t2.call());
 							System.out.println("RuntimeThr: nextEven return value is " + msg);
 							returnQue.put(msg);
-							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
 						e.printStackTrace();
-					}finally
-					{
-						lock.unlock();
 					}
 				}
 				break;
 				case "nextOdd": System.out.println("RuntimeThr: nextOdd case");
 				{
-					lock.lock(); 
 					try
 					{
-						request.await();
 						key = requestQue.take();
 						if (key == "nextOdd")
 						{
@@ -140,20 +114,23 @@ public class RuntimeThr implements Runnable
 							msg = (t2.call());
 							System.out.println("RuntimeThr: nextOdd return value is " + msg);
 							returnQue.put(msg);
-							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
 						e.printStackTrace();
-					}finally
-					{
-						lock.unlock();
 					}
 				}
 				break;
 			
 			}
+			System.out.println("=============================================="
+					+ "\nReturnQue: " + returnQue.toString()
+							+ "\n=============================================="); 
 			}while(!requestQue.isEmpty());
-			System.out.println("All Requests are finished. ");
+			System.out.println("RequestQue is empty . . .");
+			
+			if(returnQue.isEmpty()) {
+				System.out.println("All responses have been sent . . .");
+			}
 		}
 }

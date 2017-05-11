@@ -69,7 +69,7 @@ public class TCPserver {
 	  public static BigInteger nextEvenFib(BigInteger n)
 	  {
 		  if(n == null)
-			  n = BigInteger.ZERO; 
+			  n = BigInteger.ONE; 
 		BigInteger evenFib = BigInteger.ZERO;
 		BigInteger temp = BigInteger.ONE;
 		int i = 0;

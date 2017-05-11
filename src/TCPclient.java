@@ -52,7 +52,7 @@ public class TCPclient
 		{
 			e.printStackTrace();
 		}
-		System.out.println("All requests have been returned...");
+		System.out.println("All requests have been sent...");
 		
 	} // end of main 
 	

@@ -1,18 +1,19 @@
 import java.util.*;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingQueue;
 
 public class uThr extends Thread
 {
 	private static BlockingQueue<String> requestQue;// = new LinkedBlockingQueue<String>(); 
 	private static BlockingQueue<String> returnQue;// = new LinkedBlockingQueue<String>(); 
 	private long threadID; 
+	private int requestID; 
 	
 	public uThr(BlockingQueue<String> rqQue, BlockingQueue<String> rtQue)
 	{
 		requestQue = rqQue;
 		returnQue = rtQue;
 		threadID = this.getId(); 
+		requestID = 1; 
 	}
 	
 	public void run()
@@ -20,7 +21,6 @@ public class uThr extends Thread
 		String msg = "";
 		Random rand = new Random();
 		int result = 0;
-		int requestID = 1; 
 		
 		for (int i = 0; i < 20; i++)
 		{
