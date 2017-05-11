@@ -4,8 +4,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 
 public class uThr extends Thread
 {
-	private static BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
-	private static BlockingQueue<String> returnQue = new LinkedBlockingQueue<String>(); 
+	private static BlockingQueue<String> requestQue;// = new LinkedBlockingQueue<String>(); 
+	private static BlockingQueue<String> returnQue;// = new LinkedBlockingQueue<String>(); 
 	public uThr(BlockingQueue<String> rqQue, BlockingQueue<String> rtQue)
 	{
 		requestQue = rqQue;
