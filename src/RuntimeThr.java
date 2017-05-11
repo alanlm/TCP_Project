@@ -28,10 +28,10 @@ public class RuntimeThr implements Runnable
 						+ "\nRequestQue: " + requestQue.toString()
 								+ "\n=============================================="); 
 			key = requestQue.peek();
-			System.out.println("RuntimeThr: key = " + key);
+
 			switch(key)
 			{
-				case "nextFib": System.out.println("RuntimeThr: nextFib case");
+				case "nextFib": 
 				{
 					try
 					{
@@ -49,7 +49,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextPrime": System.out.println("RuntimeThr: nextPrime case");
+				case "nextPrime": 
 				{
 					try
 					{
@@ -67,7 +67,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextRand": System.out.println("RuntimeThr: nextRand case");
+				case "nextRand": 
 				{
 					try
 					{
@@ -85,7 +85,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextEven": System.out.println("RuntimeThr: nextEven case");
+				case "nextEven": 
 				{
 					try
 					{
@@ -103,7 +103,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextOdd": System.out.println("RuntimeThr: nextOdd case");
+				case "nextOdd": 
 				{
 					try
 					{
@@ -126,11 +126,12 @@ public class RuntimeThr implements Runnable
 			System.out.println("=============================================="
 					+ "\nReturnQue: " + returnQue.toString()
 							+ "\n=============================================="); 
-			}while(!requestQue.isEmpty());
-			System.out.println("RequestQue is empty . . .");
 			
+			if(requestQue.isEmpty())
+				System.out.println("RequestQue is empty . . .");
 			if(returnQue.isEmpty()) {
 				System.out.println("All responses have been sent . . .");
 			}
+			}while(true);
 		}
 }
