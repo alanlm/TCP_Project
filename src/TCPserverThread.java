@@ -33,7 +33,7 @@ public class TCPserverThread extends Thread {
                 	response = String.valueOf(nextFibValue); 
                 	break;
                 case "nextRand": // TODO: nextLargerRand
-                	int nextRandValue = TCPserver.nextLargerRand(TCPserver.randValue); 
+                	BigInteger nextRandValue = TCPserver.nextLargerRand(TCPserver.randValue); 
                 	TCPserver.randValue = nextRandValue; 
                 	response = String.valueOf(nextRandValue); 
                 	break; 
