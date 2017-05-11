@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class TCPserver {
 	
-	public static BigInteger fibValue = BigInteger.ZERO; 
-	public static int primeValue = 2; 
-	public static int randValue = 0; 
+	public static BigInteger fibValue; 
+	public static int primeValue; 
+	public static int randValue; 
 
 	public static void main(String[] args) 
 	{
@@ -68,6 +68,8 @@ public class TCPserver {
 	
 	  public static BigInteger nextEvenFib(BigInteger n)
 	  {
+		  if(n == null)
+			  n = BigInteger.ZERO; 
 		BigInteger evenFib = BigInteger.ZERO;
 		BigInteger temp = BigInteger.ONE;
 		int i = 0;
@@ -85,6 +87,8 @@ public class TCPserver {
 	//Steph 
 	public static int nextPrime(int prime)
 	{
+		if(prime == 0)
+			prime = 2; 
 		boolean isPrime = false;
 
 		int start = 2;
@@ -110,6 +114,8 @@ public class TCPserver {
 	//Lori
 	public static int nextLargerRand(int s) 
 	{
+		if(s == 0)
+			s = 1; 
 		int big = 0;
 		int small = s;
 		Random gen = new Random();

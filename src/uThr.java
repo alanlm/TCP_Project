@@ -21,10 +21,10 @@ public class uThr extends Thread
 		
 		for (int i = 0; i < 20; i++)
 		{
-			result = rand.nextInt(5);
+			result = rand.nextInt(5) + 2;
 			switch (result) 
 			{
-				case 0: System.out.println("uThr: request = nextEven");
+				case 2: System.out.println("uThr: request = nextEven");
 					try 
 					{
 						requestQue.put("nextEven");
@@ -35,7 +35,7 @@ public class uThr extends Thread
 						e.printStackTrace();
 					}
 				break;
-				case 1: System.out.println("uThr: request = nextOdd");
+				case 3: System.out.println("uThr: request = nextOdd");
 					
 					try 
 					{
@@ -47,7 +47,7 @@ public class uThr extends Thread
 					e.printStackTrace();
 					}
 					break;
-				case 2: System.out.println("uThr: request = nextFib");
+				case 4: System.out.println("uThr: request = nextFib");
 					try 
 					{
 						requestQue.put("nextFib");
@@ -58,7 +58,7 @@ public class uThr extends Thread
 					e.printStackTrace();
 					}
 					break;
-				case 3: System.out.println("uThr: request = nextRand");
+				case 5: System.out.println("uThr: request = nextRand");
 					try 
 					{
 						requestQue.put("nextRand");
@@ -69,7 +69,7 @@ public class uThr extends Thread
 					e.printStackTrace();
 					}
 					break;
-				case 4: System.out.println("uThr: request = nextPrime");
+				case 6: System.out.println("uThr: request = nextPrime");
 					try 
 					{
 						requestQue.put("nextPrime");

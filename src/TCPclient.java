@@ -7,10 +7,11 @@ import java.util.concurrent.TimeUnit;
 
 public class TCPclient 
 {
-
 	private static BlockingQueue<String> requestQue = new LinkedBlockingQueue<String>(); 
 	private static BlockingQueue<String> returnQue = new LinkedBlockingQueue<String>(); 
-	public static  BigInteger curEven, curOdd = BigInteger.ZERO;
+	public static BigInteger curEven; 
+	public static BigInteger curOdd;
+	
 	public static void main(String[] args)
 	{
 		System.out.println("Starting Client Requests...");
@@ -22,7 +23,7 @@ public class TCPclient
 		uThr u6 = new uThr(requestQue,returnQue);
 		uThr u7 = new uThr(requestQue,returnQue);
 		uThr u8 = new uThr(requestQue,returnQue);
-		RuntimeThr runThr = new RuntimeThr(requestQue,returnQue,curEven,curOdd);
+		RuntimeThr runThr = new RuntimeThr(requestQue,returnQue);
 		ExecutorService exec = Executors.newFixedThreadPool(10);
 		exec.submit(u1);
 		exec.submit(u2);
