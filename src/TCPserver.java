@@ -114,7 +114,17 @@ public class TCPserver {
 	//Lori
 	public static BigInteger nextLargerRand(BigInteger s) 
 	{
-		if(s.compareTo(BigInteger.ZERO) == 0)
+		
+		
+		BigInteger temp = new BigInteger(100,new Random());
+		if (s.compareTo(temp) < 0)
+		{
+			s = s.add(temp);
+		}
+		return s;
+		
+	}
+		/*if(s.compareTo(BigInteger.ZERO) == 0)
 		{
 			s = BigInteger.ONE;
 		}
@@ -128,7 +138,6 @@ public class TCPserver {
 				big = big.add(BigInteger.valueOf(Integer.MAX_VALUE));
 			}
 		} while (small.compareTo(big) > 0);
-		return big;
-	}
+		return big;*/
 	
-} // end of TCPserver class 
+	} // end of TCPserver class 
