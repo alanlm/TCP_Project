@@ -8,7 +8,7 @@ public class TCPserver {
 	
 	public static BigInteger fibValue; 
 	public static int primeValue; 
-	public static int randValue; 
+	public static BigInteger randValue; 
 
 	public static void main(String[] args) 
 	{
@@ -69,7 +69,7 @@ public class TCPserver {
 	  public static BigInteger nextEvenFib(BigInteger n)
 	  {
 		  if(n == null)
-			  n = BigInteger.ZERO; 
+			  n = BigInteger.ONE; 
 		BigInteger evenFib = BigInteger.ZERO;
 		BigInteger temp = BigInteger.ONE;
 		int i = 0;
@@ -112,19 +112,22 @@ public class TCPserver {
 	}
 		
 	//Lori
-	public static int nextLargerRand(int s) 
+	public static BigInteger nextLargerRand(BigInteger s) 
 	{
-		if(s == 0)
-			s = 1; 
-		int big = 0;
-		int small = s;
+		if(s.compareTo(BigInteger.ZERO) == 0)
+		{
+			s = BigInteger.ONE;
+		}
+		BigInteger big = BigInteger.ZERO;
+		BigInteger small = s;
 		Random gen = new Random();
 		do {
-			big = gen.nextInt() + small;
-			if (big < 0) {
-				big += Integer.MAX_VALUE;
+			big = BigInteger.valueOf(gen.nextInt()).add(small);
+			if (big.compareTo(BigInteger.ZERO) < 0) 
+			{
+				big = big.add(BigInteger.valueOf(Integer.MAX_VALUE));
 			}
-		} while (small > big);
+		} while (small.compareTo(big) > 0);
 		return big;
 	}
 	
