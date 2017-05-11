@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class TCPserver {
 	
-	public static BigInteger fibValue; 
+	public static BigInteger fibValue = BigInteger.ONE; 
 	public static int primeValue; 
-	public static BigInteger randValue; 
+	public static int randValue; 
 	
 	public static void main(String[] args) 
 	{
@@ -42,6 +42,10 @@ public class TCPserver {
 		BigInteger result = BigInteger.ZERO; 
 		BigInteger n1 = BigInteger.ZERO;
 		BigInteger n2 = BigInteger.ZERO;
+		  if(n == null)
+		  {
+			  n = BigInteger.ZERO; 
+		  }
 		if(n.equals(BigInteger.ZERO))
 		{
 			result = BigInteger.ZERO;
@@ -69,7 +73,9 @@ public class TCPserver {
 	  public static BigInteger nextEvenFib(BigInteger n)
 	  {
 		  if(n == null)
-			  n = BigInteger.ONE; 
+		  {
+			  n = BigInteger.ZERO; 
+		  }
 		BigInteger evenFib = BigInteger.ZERO;
 		BigInteger temp = BigInteger.ONE;
 		int i = 0;
@@ -79,8 +85,7 @@ public class TCPserver {
 			  i++;
 		  }
 		  evenFib = temp;
-		  temp = temp.add(BigInteger.ONE);
-		  i++;
+		 
 		return evenFib;
 	  }
 		  
@@ -112,32 +117,22 @@ public class TCPserver {
 	}
 		
 	//Lori
-	public static BigInteger nextLargerRand(BigInteger s) 
+	public static int nextLargerRand(int s) 
 	{
-		
-		
-		BigInteger temp = new BigInteger(100,new Random());
-		if (s.compareTo(temp) < 0)
+		if (s == Integer.MAX_VALUE )
 		{
-			s = s.add(temp);
+			s = 1;
 		}
-		return s;
-		
-	}
-		/*if(s.compareTo(BigInteger.ZERO) == 0)
-		{
-			s = BigInteger.ONE;
-		}
-		BigInteger big = BigInteger.ZERO;
-		BigInteger small = s;
+		int big = 0;
+		int small = s;
 		Random gen = new Random();
 		do {
-			big = BigInteger.valueOf(gen.nextInt()).add(small);
-			if (big.compareTo(BigInteger.ZERO) < 0) 
-			{
-				big = big.add(BigInteger.valueOf(Integer.MAX_VALUE));
+			big = gen.nextInt() + small;
+			if (big < 0) {
+				big += Integer.MAX_VALUE;
 			}
-		} while (small.compareTo(big) > 0);
-		return big;*/
+		} while (small > big);
+		return big;
+	}
 	
 	} // end of TCPserver class 
