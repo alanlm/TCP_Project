@@ -1,6 +1,6 @@
 //import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
-//import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Condition;
 //import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -10,8 +10,8 @@ public class RuntimeThr implements Runnable
 	// Thread Safe Queues that store the client requests and the order of response 
 		private static BlockingQueue<String> requestQue;// = new LinkedBlockingQueue<String>(); 
 		private static BlockingQueue<String> returnQue;// = new LinkedBlockingQueue<String>(); 
-		private Lock  lock = new ReentrantLock();
-		//private Condition requestLine = new Condition();
+		private final Lock  lock = new ReentrantLock();
+		private Condition request = lock.newCondition();
 		
 		public RuntimeThr(BlockingQueue<String> rqQue, BlockingQueue<String> rtQue)
 		{
@@ -39,10 +39,12 @@ public class RuntimeThr implements Runnable
 						key = requestQue.take();
 						if (key == "nextFib")
 						{
+							request.await();
 							t1 = new NetworkThread(key); //take in newVal
 							msg = (t1.call());
 							System.out.println("RuntimeThr: nextFib return value is " + msg);
 							returnQue.put(msg);
+							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
@@ -58,6 +60,7 @@ public class RuntimeThr implements Runnable
 					lock.lock(); 
 					try
 					{
+						request.await();
 						key = requestQue.take();
 						if (key == "nextPrime")
 						{
@@ -65,6 +68,7 @@ public class RuntimeThr implements Runnable
 							msg = (t1.call());
 							System.out.println("RuntimeThr: nextPrime return value is " + msg);
 							returnQue.put(msg);
+							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
@@ -80,6 +84,7 @@ public class RuntimeThr implements Runnable
 					lock.lock(); 
 					try
 					{
+						request.await();
 						key = requestQue.take();
 						if (key == "nextRand")
 						{
@@ -87,6 +92,7 @@ public class RuntimeThr implements Runnable
 							msg = (t1.call());
 							System.out.println("RuntimeThr: nextRand return value is " + msg);
 							returnQue.put(msg);
+							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
@@ -102,6 +108,7 @@ public class RuntimeThr implements Runnable
 					//lock.lock(); 
 					try
 					{
+						request.await();
 						key = requestQue.take();
 						if (key == "nextEven")
 						{
@@ -109,6 +116,7 @@ public class RuntimeThr implements Runnable
 							msg = (t2.call());
 							System.out.println("RuntimeThr: nextEven return value is " + msg);
 							returnQue.put(msg);
+							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
@@ -124,6 +132,7 @@ public class RuntimeThr implements Runnable
 					lock.lock(); 
 					try
 					{
+						request.await();
 						key = requestQue.take();
 						if (key == "nextOdd")
 						{
@@ -131,6 +140,7 @@ public class RuntimeThr implements Runnable
 							msg = (t2.call());
 							System.out.println("RuntimeThr: nextOdd return value is " + msg);
 							returnQue.put(msg);
+							request.signalAll();
 						}
 					} catch (Exception e) 
 					{
