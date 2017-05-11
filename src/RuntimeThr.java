@@ -36,10 +36,10 @@ public class RuntimeThr implements Runnable
 					lock.lock(); 
 					try
 					{
+						request.await();
 						key = requestQue.take();
 						if (key == "nextFib")
 						{
-							request.await();
 							t1 = new NetworkThread(key); //take in newVal
 							msg = (t1.call());
 							System.out.println("RuntimeThr: nextFib return value is " + msg);
@@ -105,7 +105,7 @@ public class RuntimeThr implements Runnable
 				break;
 				case "nextEven": System.out.println("RuntimeThr: nextEven case");
 				{
-					//lock.lock(); 
+					lock.lock(); 
 					try
 					{
 						request.await();
