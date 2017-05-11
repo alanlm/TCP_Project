@@ -33,6 +33,15 @@ public class TCPclient
 		exec.submit(u7);
 		exec.submit(u8);
 		exec.submit(runThr);
+		exec.execute(u1);
+		exec.execute(u2);
+		exec.execute(u3);
+		exec.execute(u4);
+		exec.execute(u5);
+		exec.execute(u6);
+		exec.execute(u7);
+		exec.execute(u8);
+		exec.execute(runThr);
 		exec.shutdown();
 		try 
 		{

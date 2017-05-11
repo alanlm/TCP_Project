@@ -28,11 +28,11 @@ public class RuntimeThr implements Runnable
 			NetworkThread t1;
 			LocalThread t2;
 			key = requestQue.peek();
-			 new NetworkThread(requestQue.poll());
+			System.out.println("RuntimeThr: key = " + key);
 			
 			switch(key)
 			{
-				case "nextFib":
+				case "nextFib": System.out.println("RuntimeThr: nextFib case");
 				{
 					lock.lock(); 
 					try
@@ -42,6 +42,7 @@ public class RuntimeThr implements Runnable
 						{
 							t1 = new NetworkThread(key); //take in newVal
 							msg = (t1.call());
+							System.out.println("RuntimeThr: nextFib return value " + msg);
 							returnQue.put(msg);
 						}
 					} catch (Exception e) 
@@ -53,7 +54,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextPrime":
+				case "nextPrime": System.out.println("RuntimeThr: nextPrime case");
 				{
 					lock.lock(); 
 					try
@@ -63,6 +64,7 @@ public class RuntimeThr implements Runnable
 						{
 							t1 = new NetworkThread(key); //take in newVal
 							msg = (t1.call());
+							System.out.println("RuntimeThr: nextPrime return value " + msg);
 							returnQue.put(msg);
 						}
 					} catch (Exception e) 
@@ -74,7 +76,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextRand":
+				case "nextRand": System.out.println("RuntimeThr: nextRand case");
 				{
 					lock.lock(); 
 					try
@@ -84,6 +86,7 @@ public class RuntimeThr implements Runnable
 						{
 							t1 = new NetworkThread(key); //take in newVal
 							msg = (t1.call());
+							System.out.println("RuntimeThr: nextRand return value " + msg);
 							returnQue.put(msg);
 						}
 					} catch (Exception e) 
@@ -95,7 +98,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextEven":
+				case "nextEven": System.out.println("RuntimeThr: nextEven case");
 				{
 					lock.lock(); 
 					try
@@ -105,6 +108,7 @@ public class RuntimeThr implements Runnable
 						{
 							t2 = new LocalThread(key,curEven); //take in newVal
 							msg = (t2.call());
+							System.out.println("RuntimeThr: nextEven return value " + msg);
 							returnQue.put(msg);
 						}
 					} catch (Exception e) 
@@ -116,7 +120,7 @@ public class RuntimeThr implements Runnable
 					}
 				}
 				break;
-				case "nextOdd":
+				case "nextOdd": System.out.println("RuntimeThr: nextOdd case");
 				{
 					lock.lock(); 
 					try
@@ -126,6 +130,7 @@ public class RuntimeThr implements Runnable
 						{
 							t2 = new LocalThread(key,curOdd); //take in newVal
 							msg = (t2.call());
+							System.out.println("RuntimeThr: nextOdd return value " + msg);
 							returnQue.put(msg);
 						}
 					} catch (Exception e) 
