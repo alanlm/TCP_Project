@@ -32,7 +32,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextEven");
 						msg = returnQue.take();
-						System.out.println("uThr ID " + threadID + ": request ID " + requestID++ + " return value from runtime = " + msg);
+						System.out.println("uThr ID " + threadID + ": request ID " + requestID + " return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 						e.printStackTrace();
@@ -44,7 +44,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextOdd");
 						msg = returnQue.take();
-						System.out.println("uThr ID " + threadID + ": request ID " + requestID++ + " return value from runtime = " + msg);
+						System.out.println("uThr ID " + threadID + ": request ID " + requestID + " return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
@@ -55,7 +55,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextFib");
 						msg = returnQue.take();
-						System.out.println("uThr ID " + threadID + ": request ID " + requestID++ + " return value from runtime = " + msg);
+						System.out.println("uThr ID " + threadID + ": request ID " + requestID + " return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
@@ -66,7 +66,7 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextRand");
 						msg = returnQue.take();
-						System.out.println("uThr ID " + threadID + ": request ID " + requestID++ + " return value from runtime = " + msg);
+						System.out.println("uThr ID " + threadID + ": request ID " + requestID + " return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
@@ -77,16 +77,17 @@ public class uThr extends Thread
 					{
 						requestQue.put("nextPrime");
 						msg = returnQue.take();
-						System.out.println("uThr ID " + threadID + ": request ID " + requestID++ + " return value from runtime = " + msg);
+						System.out.println("uThr ID " + threadID + ": request ID " + requestID + " return value from runtime = " + msg);
 					} catch (InterruptedException e) 
 					{
 					e.printStackTrace();
 					}
 					break;
-				default: System.out.println("uThr: request = Invalid");
+				default: System.out.println("uThr ID " + threadID + ": request ID " + requestID + " = Invalid");
 					// do nothing
 					break;
 			}
+			requestID++; 
 		}
 	}
 }
