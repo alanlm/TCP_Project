@@ -28,8 +28,8 @@ public class TCPserverThread extends Thread {
                 String response = ""; 
                 switch(request) {
                 case "nextFib": // TODO: nextEvenFib
-                	BigInteger nextFibValue = TCPserver.nextEvenFib(TCPserver.fibValue.add(BigInteger.ONE)); 
-                	TCPserver.fibValue = nextFibValue; 
+                	BigInteger nextFibValue = TCPserver.nextEvenFib(TCPserver.fibValue); 
+                	TCPserver.fibValue = nextFibValue.add(BigInteger.ONE); 
                 	response = String.valueOf(nextFibValue); 
                 	break;
                 case "nextRand": // TODO: nextLargerRand
