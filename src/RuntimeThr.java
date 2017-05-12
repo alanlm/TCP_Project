@@ -128,11 +128,6 @@ public class RuntimeThr implements Runnable
 			System.out.println("=============================================="
 					+ "\nReturnQue: " + returnQue.toString()
 							+ "\n=============================================="); 
-			
-			
-			if(returnQue.isEmpty()) {
-				System.out.println("All responses have been sent . . .");
-			}
 			}while(true);
 		}
 }
